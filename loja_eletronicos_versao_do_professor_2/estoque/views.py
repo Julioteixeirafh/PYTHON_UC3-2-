@@ -74,6 +74,23 @@ class ProdutoCreateView(CreateView):
         context['view_title'] = 'Cadastrar Novo Produto'
         return context
 
+
+class CategoriaCreateView(CreateView):
+    model = Categoria
+    template_name = 'estoque/categoria_form.html'
+    # Lista dos campos que o usuário poderá preencher
+    fields = ['identificacao', 'descricao', 'categoria',]
+    # URL para onde o usuário será redirecionado após o sucesso
+    success_url = reverse_lazy('estoque:categoria_list')
+
+    # Adiciona um título dinâmico ao contexto do template
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['view_title'] = 'Cadastrar Novo Produto'
+        return context
+
+
+
 # UPDATE
 class ProdutoUpdateView(UpdateView):
     model = Produto
@@ -104,7 +121,6 @@ class CategoriaListView(ListView):
     ordering = ['identificacao']  # Opcional: ordena os produtos por nome
     #paginate_by = 10 # Opcional: Adiciona paginação
 
-
 # READ (Detail)
 class CategoriaDetailView(DetailView):
     model = Categoria
@@ -113,6 +129,22 @@ class CategoriaDetailView(DetailView):
 
 
 
+
+
+
+class TagListView(ListView):
+    model = Protuto_Tag
+    template_name = 'estoque/tag/tag_list'
+    context_object_name = 'tags'  # Nome da variável a ser usada no template
+    ordering = ['identificacao']  # Opcional: ordena os produtos por nome
+    #paginate_by = 10 # Opcional: Adiciona paginação
+
+
+# READ (Detail)
+class TagDetailView(DetailView):
+    model = Protuto_Tag
+    template_name = 'estoque/tag/tag_detail.html'
+    context_object_name = 'tag'
 
 
 

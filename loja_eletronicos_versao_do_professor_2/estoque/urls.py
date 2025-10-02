@@ -23,7 +23,11 @@ urlpatterns = [
     path('produtos/<int:pk>/deletar/', views.ProdutoDeleteView.as_view(), name='produto_delete'),
 
     path('categoria/', views.CategoriaListView.as_view(), name='categoria_list'),
+    path('categoria/novo/', views.CategoriaCreateView.as_view(), name='categoria_create'),
     path('categoria/<int:pk>/', views.CategoriaDetailView.as_view(), name='categoria_detail'),
+
+    path('tag/', views.TagListView.as_view(), name='tag_list'),
+    path('tag/<int:pk>/', views.TagDetailView.as_view(), name='tag_detail'),
 
 
 ]

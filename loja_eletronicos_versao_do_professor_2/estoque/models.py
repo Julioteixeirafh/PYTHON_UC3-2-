@@ -24,6 +24,12 @@ class Categoria(models.Model):
         verbose_name = "Categoria"
         verbose_name_plural = "Categorias"
 
+    data_criacao = models.DateTimeField(
+        verbose_name="Data de criação",
+        auto_now_add=True
+    )
+    
+
 ##
 # Tag
 ##
