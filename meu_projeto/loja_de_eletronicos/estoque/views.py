@@ -150,6 +150,8 @@ from django.views.generic import TemplateView
 from .models import Pedido
 from django.shortcuts import get_object_or_404, redirect
 
+
+
 ##
 # Checkout e Pagamento
 ##
