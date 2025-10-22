@@ -1,0 +1,97 @@
+{% extends 'estoque/base.html' %}
+
+{% block title %}Pagamento - Loja de Eletrônicos{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <h2 class="text-center mb-4"><i class="bi bi-credit-card"></i> Escolha a Forma de Pagamento</h2>
+        
+        <div class="card mb-4">
+            <div class="card-header bg-success text-white">
+                <h5 class="mb-0">Resumo do Pedido</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        {% if pedido.produto.imagem %}
+                        <img src="{{ pedido.produto.imagem.url }}" class="img-fluid rounded" alt="{{ pedido.produto.nome }}">
+                        {% endif %}
+                    </div>
+                    <div class="col-md-8">
+                        <h5>{{ pedido.produto.nome }}</h5>
+                        <p><strong>Quantidade:</strong> {{ pedido.quantidade }}</p>
+                        <p><strong>Preço unitário:</strong> R$ {{ pedido.produto.preco }}</p>
+                        <hr>
+                        <h4 class="text-success"><strong>Total:</strong> R$ {{ pedido.valor_total }}</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form method="post">
+            {% csrf_token %}
+            
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title mb-4">Selecione o método de pagamento:</h5>
+                    
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <input type="radio" class="btn-check" name="forma_pagamento" id="pix" value="PIX" required>
+                            <label class="btn btn-outline-success w-100 p-4" for="pix">
+                                <i class="bi bi-qr-code" style="font-size: 3rem;"></i>
+                                <h5 class="mt-2">PIX</h5>
+                                <p class="mb-0 small">Aprovação imediata</p>
+                            </label>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <input type="radio" class="btn-check" name="forma_pagamento" id="cartao" value="CARTAO">
+                            <label class="btn btn-outline-primary w-100 p-4" for="cartao">
+                                <i class="bi bi-credit-card-fill" style="font-size: 3rem;"></i>
+                                <h5 class="mt-2">Cartão</h5>
+                                <p class="mb-0 small">Crédito ou Débito</p>
+                            </label>
+                        </div>
+                        
+                        <div class="col-md-4">
+                            <input type="radio" class="btn-check" name="forma_pagamento" id="boleto" value="BOLETO">
+                            <label class="btn btn-outline-warning w-100 p-4" for="boleto">
+                                <i class="bi bi-upc-scan" style="font-size: 3rem;"></i>
+                                <h5 class="mt-2">Boleto</h5>
+                                <p class="mb-0 small">Compensação em 1-3 dias</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn btn-success btn-lg">
+                    <i class="bi bi-check-circle"></i> Confirmar Pagamento
+                </button>
+                <a href="{% url 'estoque:produto_list' %}" class="btn btn-secondary">
+                    <i class="bi bi-x-circle"></i> Cancelar Pedido
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    .btn-check:checked + .btn-outline-success {
+        background-color: #198754;
+        color: white;
+    }
+    .btn-check:checked + .btn-outline-primary {
+        background-color: #0d6efd;
+        color: white;
+    }
+    .btn-check:checked + .btn-outline-warning {
+        background-color: #ffc107;
+        color: black;
+    }
+</style>
+
+{% endblock %}

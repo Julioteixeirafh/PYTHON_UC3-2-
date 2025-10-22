@@ -1,0 +1,26 @@
+{% extends 'estoque/base.html' %}
+
+{% block title %}Estoque - Loja de Eletronicos{% endblock %}
+
+{% block extra_css %}
+    {{ block.super }} 
+
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-md-6">
+        <h1>{{ tag.nome }}</h1>
+        <p class="lead">{{ tag.descricao }}</p>
+        <hr>
+        <p><strong>Tag:</strong>
+            <h1>{{ tag.nome }}</h1>
+
+        <hr>
+        <a href="{% url 'estoque:tag_update' tag.pk %}" class="btn btn-warning">Editar Tag</a>
+        <a href="{% url 'estoque:tag_list' %}" class="btn btn-secondary">Voltar para a Lista</a>
+    </div>
+</div>
+
+{% endblock %}
