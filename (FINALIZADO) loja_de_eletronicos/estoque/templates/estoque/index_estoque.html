@@ -1,0 +1,19 @@
+{% extends 'estoque/base.html' %}
+
+{% block title %}Página Inicial - Minha Loja{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="text-center p-5 rounded" style="background: linear-gradient(135deg, #8B0000 0%, #DC143C 100%); box-shadow: 0 5px 25px rgba(220, 20, 60, 0.8);">
+            <h1 class="display-4 text-white">Bem-vindo à gestão de estoque</h1>
+            <p class="lead text-white">Os melhores produtos, são gerenciados aqui.</p>
+            <hr class="my-4 bg-white">
+            <p class="text-white">Gerencie os produtos oferecidos aos seus clientes</p>
+            <a class="btn btn-light btn-lg" 
+                href="{% url 'estoque:produto_list' %}" 
+                role="button">
+                <i class="bi bi-box-fill"></i> Ver Produtos
+            </a>
+        </div>
+    </div>
+{% endblock %}

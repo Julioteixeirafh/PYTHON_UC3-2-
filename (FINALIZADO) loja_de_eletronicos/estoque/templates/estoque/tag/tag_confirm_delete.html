@@ -1,0 +1,22 @@
+{% extends 'estoque/base.html' %}
+
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-danger text-white">
+            <h3>Confirmar Exclusão</h3>
+        </div>
+        <div class="card-body">
+            <p>Tem certeza que deseja deletar a tag <strong>{{ tag.identificacao }}</strong>?</p>
+            
+            <form method="POST">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Sim, Deletar</button>
+                <a href="{% url 'estoque:tag_list' %}" class="btn btn-secondary">Cancelar</a>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
