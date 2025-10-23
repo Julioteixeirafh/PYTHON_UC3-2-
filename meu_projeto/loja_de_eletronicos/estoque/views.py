@@ -77,16 +77,16 @@ class ProdutoCreateView(CreateView):
 
 class CategoriaCreateView(CreateView):
     model = Categoria
-    template_name = 'estoque/categoria_form.html'
+    template_name = 'estoque/categoria/categoria_form.html'
     # Lista dos campos que o usuário poderá preencher
-    fields = ['identificacao', 'descricao', 'categoria',]
+    fields = ['identificacao', 'descricao']
     # URL para onde o usuário será redirecionado após o sucesso
     success_url = reverse_lazy('estoque:categoria_list')
 
     # Adiciona um título dinâmico ao contexto do template
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['view_title'] = 'Cadastrar Novo Produto'
+        context['view_title'] = 'Cadastrar Nova Categoria'
         return context
 
 
@@ -103,12 +103,32 @@ class ProdutoUpdateView(UpdateView):
         context['view_title'] = 'Editar Produto'
         return context
 
+
+
+class CategoriaUpdateView(UpdateView):
+    model = Categoria
+    template_name = 'estoque/categoria/categoria_form.html'
+    fields = ['identificacao', 'descricao']
+    success_url = reverse_lazy('estoque:categoria_list')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['view_title'] = 'Editar Categoria'
+        return context
+
 # DELETE
 class ProdutoDeleteView(DeleteView):
     model = Produto
     template_name = 'estoque/produto_confirm_delete.html'
     success_url = reverse_lazy('estoque:produto_list')
     context_object_name = 'produto'
+
+class CategoriaDeleteView(DeleteView):
+    model = Categoria
+    template_name = 'estoque/categoria/categoria_confirm_delete.html'
+    success_url = reverse_lazy('estoque:categoria_list')
+    context_object_name = 'categoria'
+
 
 
 
